@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Day Surprise</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png"
+    href="https://cdn.discordapp.com/attachments/1035521179009691670/1218461468169867284/image.png?ex=6607bfab&is=65f54aab&hm=db89fbd892b039592ed3b23caaac2ca7241f3d3662ed829b6088a98c961a935f&">
+  <style>
+    /* CSS for centering */
+    #modelViewer {
+      width: 1%;
+      /* Adjust the width as needed */
+      height: 300px;
+      /* Adjust the height as needed */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      /* Center the box horizontally */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="snowflakes" aria-hidden="true">
+    <div class="snowflake">
+      <div class="inner">🩷</div>
+    </div>
+    <div class="snowflake">
+      <div class="inner">🩷</div>
+    </div>
+    <div class="snowflake">
+      <div class="inner">🩷</div>
+    </div>
+    <div class="snowflake">
+      <div class="inner">🩷</div>
+    </div>
+    <div class="snowflake">
+      <div class="inner">🩷</div>
+    </div>
+    <div class="snowflake">
+      <div class="inner">🩷</div>
+    </div>
+    <div class="snowflake">
+      <div class="inner">🩷</div>
+    </div>
+    <div class="snowflake">
+      <div class="inner">🩷</div>
+    </div>
+    <div class="snowflake">
+      <div class="inner">🩷</div>
+    </div>
+    <div class="snowflake">
+      <div class="inner">🩷</div>
+    </div>
+    <div class="snowflake">
+      <div class="inner">🩷</div>
+    </div>
+    <div class="snowflake">
+      <div class="inner">🩷</div>
+    </div>
+  </div>
+  <header>
+    <h1>Happy Valentine's Day, My Love!</h1>
+  </header>
+  <div class="container">
+    <section id="intro" class="animated-header">
+      <h2>Dear [Girlfriend's Name],</h2>
+      <p id="typing-text">On this special day, I wanted to express my love and appreciation for you in a unique way.</p>
+      <p id="typing-text">Here's a little something just for you...</p>
+    </section>
+    <section id="gift" class="animated zoomIn">
+      <h2>A Ring for My Love</h2>
+      <div id="modelViewer"></div>
+      <p id="typing-text">I hope this gift brings a smile to your face and warms your heart as much as you do mine every
+        single day.</p>
+    </section>
+    <section id="message" class="animated fadeInUp">
+      <h2>A Message From My Heart</h2>
+      <blockquote id="typing-text">
+        "You are my sunshine, my guiding star, my everything. I cherish every moment we share and look forward to a
+        lifetime of love and happiness together."
+      </blockquote>
+    </section>
+    <footer>
+      <p id="typing-text">With all my love,</p>
+      <p id="typing-text">[Your Name]</p>
+    </footer>
+  </div>
+
+  <script>
+    // Create a scene
+    const scene = new THREE.Scene();
+
+    // Create a camera
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(-50, 0, 50); // Adjust camera position
+
+    // Create a renderer
+    const renderer = new THREE.WebGLRenderer({alpha: true});
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('modelViewer').appendChild(renderer.domElement);
+
+    // Load the 3D model
+    const loader = new THREE.GLTFLoader();
+    loader.load('scene.gltf', (gltf) => {
+      const model = gltf.scene;
+      scene.add(model);
+    });
+
+    // Add ambient light
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+    scene.add(ambientLight);
+
+    // Add directional light
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+    directionalLight.position.set(1, 1, 1); // Set the direction of the light
+    directionalLight.castShadow = true;
+    scene.add(directionalLight);
+
+    light = new THREE.PointLight(0xffffff, 0.1);
+    light.position.set(0, 300, 500);
+    scene.add(light);
+
+    light2 = new THREE.PointLight(0xffffff, 0.1);
+    light2.position.set(500, 100, 0);
+    scene.add(light2);
+
+    light3 = new THREE.PointLight(0xffffff, 0.1);
+    light3.position.set(0, 100, -500);
+    scene.add(light3);
+
+    light4 = new THREE.PointLight(0xffffff, 0.1);
+    light4.position.set(-500, 300, 500);
+    scene.add(light4);
+
+    // Add OrbitControls
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true; // smooths out the camera movement
+    controls.dampingFactor = 0.25; // set the damping factor
+
+    // Render loop
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update(); // update controls
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+  <div class="audio-container">
+    <audio autoplay loop controls>
+      <source src="DG.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+</body>
+
+</html>
